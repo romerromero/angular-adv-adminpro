@@ -60,7 +60,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
           .subscribe(
           {
               next: resp =>{                
-                this.router.navigateByUrl('/');
+                this.ngZone.run(() =>{
+                  this.router.navigateByUrl('/');
+                });                
               }, error: (err) =>{
                 console.log(err);
                 
@@ -81,9 +83,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
               localStorage.removeItem('email');
             }            
             // navegar al Dashboard
-            this.ngZone.run(() =>{
+            // this.ngZone.run(() =>{
               this.router.navigateByUrl('/');
-            });
+            // });
             
 
           }, error:(err) =>{
