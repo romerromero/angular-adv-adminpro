@@ -16,3 +16,31 @@
     height: 200px;
     width: 200px;
 }
+
+.w100 {
+    width: 100px;
+}
+
+.w150 {
+    width: 150px;
+}
+
+.avatar {
+    /* border: 1px solid grey; */
+    border-radius: 100%;
+    width: 50px;
+}
+
+.fondo-modal-imagen {
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    z-index: 9999;
+}
+
+.oculto {
+    display: none;
+}

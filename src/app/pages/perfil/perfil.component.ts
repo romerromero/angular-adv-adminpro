@@ -37,17 +37,21 @@ export class PerfilComponent implements OnInit {
   actualizarPerfil (){
     console.log(this.perfilForm?.value);
     this.usuarioService.actualizarPerfil(this.perfilForm.value)
-        .subscribe(resp =>{
-          const { nombre, email } = this.perfilForm.value;
-          this.usuario.nombre = nombre;
-          this.usuario.email = email;
-
-          Swal.fire('Guardado', 'Cambios fueron guardados', 'success');
-        }, (err)=>{
+        .subscribe(
+        {
+          next: resp =>{
+            const { nombre, email } = this.perfilForm.value;
+            this.usuario.nombre = nombre;
+            this.usuario.email = email;
+  
+            Swal.fire('Guardado', 'Cambios fueron guardados', 'success');
+          }, error:(err)=>{
           console.log(err.error.msg);
           Swal.fire('Error', err.error.msg, 'error');
           
-        })
+          }
+        }
+        );
     
   }
 

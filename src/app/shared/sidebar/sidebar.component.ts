@@ -19,6 +19,8 @@ export class SidebarComponent implements OnInit {
              private usuarioService: UsuarioService
     ) {
     this.menuItems = sidebarService.menu;
+    console.log(this.menuItems);
+    
     // this.imgUrl = usuarioService.usuario.imagenUrl;
     this.usuario = usuarioService.usuario;
     
