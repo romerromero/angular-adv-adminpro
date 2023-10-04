@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   googleInit(){
     console.log( { algo: this });
-    
     google.accounts.id.initialize({
       client_id: "1082892649100-ffhpvn13dqb0evib9rs31k1b5c5oi0ed.apps.googleusercontent.com",
       callback: (response: any) => this.handleCredentialResponse(response)
@@ -70,12 +69,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
             })
   }
 
-  login(){
-  
+  login(){  
     this.usuarioService.login( this.loginForm.value )
         .subscribe(
         {
           next: resp =>{            
+
             console.log(resp);            
             if(this.loginForm.get('remember')?.value){
               localStorage.setItem('email', this.loginForm.get('email')?.value);
