@@ -18,10 +18,8 @@ export class SidebarComponent implements OnInit {
   constructor(private sidebarService: SidebarService,
              private usuarioService: UsuarioService
     ) {
-    this.menuItems = sidebarService.menu;
-    console.log(this.menuItems);
+    this.menuItems = sidebarService.cargarMenu();
     
-    // this.imgUrl = usuarioService.usuario.imagenUrl;
     this.usuario = usuarioService.usuario;
     
    }

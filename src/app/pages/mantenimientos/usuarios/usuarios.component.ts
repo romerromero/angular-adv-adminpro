@@ -8,6 +8,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { ModalImagenService } from 'src/app/services/modal-imagen.service';
 import { FileUploadService } from 'src/app/services/file-upload.service';
 import { Subscription, delay } from 'rxjs';
+import { SidebarService } from 'src/app/services/sidebar.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -28,7 +29,8 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   constructor(private usuarioService: UsuarioService,
               private busquedaService: BusquedasService,
               private modalImagenService: ModalImagenService,
-              private fileUploadService: FileUploadService
+              private fileUploadService: FileUploadService,
+              private sidebarService: SidebarService,
     ){
 
   }
@@ -37,6 +39,9 @@ export class UsuariosComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
+    
+    this.sidebarService.menu;
+
     this.cargarUsuario();    
     
     this.$imgSubs = this.modalImagenService.nuevaImagen

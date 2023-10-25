@@ -1,30 +1,36 @@
-import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { Injectable, inject } from '@angular/core';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { tap } from 'rxjs';
 import { UsuarioService } from '../services/usuario.service';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
-
-  constructor(private usuarioService: UsuarioService,
-              private router: Router
-    ) {
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class AuthGuard implements CanActivate {
+export const AuthGuard: CanActivateFn = (route, state) => {
+  // constructor(private usuarioService: UsuarioService,
+  //             private router: Router
+  //   ) {
     
-  }
+  // }
 
-  canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot) {            
-      return this.usuarioService.validarToken()
+    const usuarioService = inject(UsuarioService);
+    const router = inject(Router);
+
+  // canActivate(
+  //   route: ActivatedRouteSnapshot,
+  //   state: RouterStateSnapshot) {  
+              
+      // return this.usuarioService.validarToken()
+      return usuarioService.validarToken()
               .pipe(
                 tap( estaAutenticado => {
                   if(!estaAutenticado){
-                    this.router.navigateByUrl('/login');
+                    // this.router.navigateByUrl('/login');
+                    router.navigateByUrl('/login');
                   }
                 })
               )
-  }
+// }
   
 }
