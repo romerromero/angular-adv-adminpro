@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, CanActivateFn, CanMatchFn, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { tap } from 'rxjs';
 import { UsuarioService } from '../services/usuario.service';
 
@@ -7,6 +7,22 @@ import { UsuarioService } from '../services/usuario.service';
 //   providedIn: 'root'
 // })
 // export class AuthGuard implements CanActivate {
+
+export const canMatch: CanMatchFn = () =>{
+
+  const router = inject(Router);
+
+    return inject(UsuarioService).validarToken()
+            .pipe(
+              tap( estaAutenticado => {
+                if(!estaAutenticado){                  
+                  router.navigateByUrl('/login');
+                }
+              })
+            )
+// }
+}
+
 export const AuthGuard: CanActivateFn = (route, state) => {
   // constructor(private usuarioService: UsuarioService,
   //             private router: Router
