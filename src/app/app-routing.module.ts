@@ -17,7 +17,8 @@ const routes : Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { useHash: true }), // Es para rutas principales
+    // RouterModule.forRoot(routes, { useHash: true }), // Es para rutas principales
+    RouterModule.forRoot(routes), // Es para rutas principales
     PagesRoutingModule,
     AuthRoutingModule
   ],
